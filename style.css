@@ -1,5 +1,6 @@
 :root {
-    --bg: #10ac84;
+    --bg: #596275;
+    --square-bg: #c44569;
     --color-text: #fff;
 }
 
@@ -25,11 +26,10 @@ html, body {
 }
 
 table {
+    margin: 20px;
     width: 600px;
     height: 400px;
-
     background-color: var(--color-text);
-    border: 1px solid var(--bg);
 }
 
 table tr {
@@ -39,5 +39,20 @@ table tr {
 
 table tr td {
     width: 33%;
-    background-color: #0abde3;
+    font-size: 250%;
+    text-align: center;
+
+    background-color: var(--square-bg);
+    border: 10px solid var(--square-bg);
+
+    transition: filter 300ms;
+}
+
+table tr td span {
+    color: var(--color-text);
+    font-weight: 800;
+}
+
+table tr td:hover {
+    filter: brightness(1.2);    
 }
