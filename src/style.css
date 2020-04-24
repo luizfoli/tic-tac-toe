@@ -1,6 +1,6 @@
 :root {
     --bg: #596275;
-    --square-bg: #c44569;
+    --second-color: #c44569;
     --color-text: #fff;
 }
 
@@ -20,13 +20,31 @@ html, body {
 .container {
     width: 100%;
     height: 100%;
+    padding: 40px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  color: #cf6a87; 
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 100px;
+  font-weight: 800;
+  letter-spacing: -3px;
+  line-height: 1;
+  text-shadow: #c44569 4px 2px 0;
+}
+
+h3 {
+    font-size: 20px;    
+    font-weight: 100;   
 }
 
 table {
-    margin: 20px;
     width: 600px;
     height: 400px;
     background-color: var(--color-text);
@@ -42,8 +60,9 @@ table tr td {
     font-size: 250%;
     text-align: center;
 
-    background-color: var(--square-bg);
-    border: 10px solid var(--square-bg);
+    background-color: var(--second-color);
+    border: 10px solid var(--second-color);
+    outline: 1px solid var(--bg);
 
     transition: filter 300ms;
 }
@@ -55,4 +74,23 @@ table tr td span {
 
 table tr td:hover {
     filter: brightness(1.2);    
+}
+
+a#btn {
+    padding: 20px;
+    background-color: var(--second-color);
+    border-radius: 10px;
+    font-size: 20px;
+
+    transition: filter 300ms;
+}
+
+a#btn:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
+}
+
+.dont-clickable {
+    pointer-events: none;
+    filter: brightness(.5);
 }

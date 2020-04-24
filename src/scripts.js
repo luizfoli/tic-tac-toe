@@ -1,12 +1,15 @@
 const table = document.querySelector('table');
 const tds = table.querySelectorAll('td');
 
-const xSquares = [];
-const oSquares = [];
-const squareAlreadyCheck = new Set();
+tds.forEach((td) => {
+    td.addEventListener('click', ({target}) => checkSquare(target));
+});
 
 const players = ["X", "O"];
-let currentPlayer = 0;
+let currentPlayer = 0; // 0 = X // 1 = O
+let xSquares = [];
+let oSquares = [];
+let squareAlreadyCheck = new Set();
 
 const winPossibilities = [
     ['1', '2', '3'],
@@ -17,62 +20,9 @@ const winPossibilities = [
     ['1', '4', '7'],
     ['2', '5', '8'],
     ['3', '6', '9'],
-  ]
-
-tds.forEach((td) => {
-    td.addEventListener('click', ({target}) => checkSquare(target));
-});
-
-const checkSquare = (square) => {
-    if(squareAlreadyCheck.has(square)) {
-        console.log('Square already add, select other')
-        return;
-    } 
-    
-    check(square);
-    const win = wins((currentPlayer ? oSquares : xSquares));
-
-    if(win) {
-        console.log(`The player ${players[currentPlayer]} wins!`)
-        return;
-    } 
-
-    changePlayer();
-}
-
-const check = (square) => {
-    squareAlreadyCheck.add(square);
-    changeSquareColor(square);  
-    addSquareToPlayer(square);
-} 
-
-const changeSquareColor = (square) => {
-    square.style.filter = "brightness(.6)";
-};
-
-const addSquareToPlayer = (square) => {
-    
-    const addTextToSquare = (square) => {
-        const span = document.createElement('span');
-        span.textContent = players[currentPlayer];
-        square.append(span);
-    }
-
-    const specifyPlayer = (square) => {
-        const squareIndex = square.id
-        currentPlayer ? oSquares.push(squareIndex) : xSquares.push(squareIndex);
-    }
-
-    addTextToSquare(square);
-    specifyPlayer(square);
-}
-
-const changePlayer = () => {
-    currentPlayer = +(!currentPlayer);
-}
+  ];
 
 function wins(squaresSelected) {
-    
     for(let i = 0; i < winPossibilities.length; i++) {
         let found = false;
 
@@ -84,3 +34,84 @@ function wins(squaresSelected) {
         }
     }
 }
+
+const onRestart = () => {
+    table.className = [];
+    tds.forEach((td) => {
+        if(td.children.length > 0) {
+            removeSquareText(td);
+            removeSquareColorSelected(td);
+        }
+    });
+
+    restartAllSquares();
+}
+
+
+
+const restartAllSquares = () => {
+    currentPlayer = 0;
+    xSquares = [];
+    oSquares = [];
+    squareAlreadyCheck.clear();
+};
+
+
+const checkSquare = (square) => {
+    if(squareAlreadyCheck.has(square)) {
+        console.log('Square already add, select other')
+        return;
+    } 
+    
+    check(square);
+    const win = wins((currentPlayer ? oSquares : xSquares));
+
+    if(win) {
+        table.className = ['dont-clickable'];
+        console.log(`The player ${players[currentPlayer]} wins!`)
+        return;
+    } 
+
+    changePlayer();
+}
+
+const check = (square) => {
+    squareAlreadyCheck.add(square);
+    addSquareColorSelected(square);  
+    addTextToSquare(square);
+    specifyPlayer(square);
+} 
+
+const addSquareColorSelected = (square) => {
+    square.style.filter = "brightness(.6)";
+};
+
+const removeSquareColorSelected = (square) => {
+    square.style.filter = '';
+}
+
+const addTextToSquare = (square) => {
+    const span = document.createElement('span');
+    span.textContent = players[currentPlayer];
+    square.append(span);
+}
+
+const removeSquareText = (square) => {
+    square.removeChild(square.children[0]);
+};
+
+const specifyPlayer = (square) => {
+    const squareIndex = square.id
+    currentPlayer ? oSquares.push(squareIndex) : xSquares.push(squareIndex);
+}
+
+const changePlayer = () => {
+    currentPlayer = +(!currentPlayer);
+    changeTitleCurrentPlayer(currentPlayer);
+}
+
+const changeTitleCurrentPlayer = (currentPlayer) => {
+    document.querySelector('#titlePlayerTurn').textContent = `It's the player turn: ${players[currentPlayer]}`;
+}
+
+changeTitleCurrentPlayer(currentPlayer);

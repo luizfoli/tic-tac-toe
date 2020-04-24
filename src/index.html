@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="./style.css">
-    </head>
-    <body>
-        
-        <div class="container">
-            <table cellspacing="1" cellpadding="0">
-                <tr id="firstLine">
-                    <td id="1"></td>
-                    <td id="2"></td>
-                    <td id="3"></td>
-                </tr>
-                <tr id="secondLine">
-                    <td id="4"></td>
-                    <td id="5"></td>
-                    <td id="6"></td>
-                </tr>
-                <tr id="thirdLine">
-                    <td id="7"></td>
-                    <td id="8"></td>
-                    <td id="9"></td>
-                </tr>
-            </table>
-        </div>
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+        <h1>tic tac toe</h1>
+        <h3 id="titlePlayerTurn" ></h3>
+        <table cellspacing="1" cellpadding="0">
+            <tr id="firstLine">
+            <td id="1"></td>
+            <td id="2"></td>
+            <td id="3"></td>
+            </tr>
+            <tr id="secondLine">
+            <td id="4"></td>
+            <td id="5"></td>
+            <td id="6"></td>
+            </tr>
+            <tr id="thirdLine">
+            <td id="7"></td>
+            <td id="8"></td>
+            <td id="9"></td>
+            </tr>
+        </table>
+        <a id="btn" onclick="onRestart()">Restart</a>
+    </div>
 
-        <script src="./scripts.js"></script>
-    </body>
+    <script src="./scripts.js"></script>
+  </body>
 </html>
