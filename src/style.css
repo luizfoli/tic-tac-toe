@@ -20,7 +20,7 @@ html, body {
 .container {
     width: 100%;
     height: 100%;
-    padding: 40px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,7 +32,7 @@ h1 {
   color: #cf6a87; 
   text-decoration: none;
   text-transform: uppercase;
-  font-size: 100px;
+  font-size: 80px;
   font-weight: 800;
   letter-spacing: -3px;
   line-height: 1;
@@ -44,9 +44,14 @@ h3 {
     font-weight: 100;   
 }
 
+h4, h5 {
+    font-weight: 200;
+    margin-top: 5px;
+}
+
 table {
     width: 600px;
-    height: 400px;
+    height: 300px;
     background-color: var(--color-text);
 }
 
@@ -77,11 +82,10 @@ table tr td:hover {
 }
 
 a#btn {
-    padding: 20px;
+    padding: 14px;
     background-color: var(--second-color);
     border-radius: 10px;
     font-size: 20px;
-
     transition: filter 300ms;
 }
 
@@ -93,4 +97,33 @@ a#btn:hover {
 .dont-clickable {
     pointer-events: none;
     filter: brightness(.5);
+}
+
+.my-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px !important;
+}
+
+.icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.icons img {
+    width: 40px;
+    margin: 20px 10px;
+}
+
+.icons a {
+    transition: filter 500ms;
+}
+
+.icons a:hover {
+    filter: brightness(1.2);
+    cursor: pointer;
 }
